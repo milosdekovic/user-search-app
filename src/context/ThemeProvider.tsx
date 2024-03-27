@@ -7,7 +7,7 @@ export const ThemeContext = createContext({
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [mode, setMode] = useState("light");
   useEffect(() => {
-    document.body.className = mode === "light" ? "bg-white" : "bg-black";
+    document.body.className = mode === "light" ? "bg-white" : "bg-[#0A0A0A]";
   }, [mode]);
   const toggleTheme = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));

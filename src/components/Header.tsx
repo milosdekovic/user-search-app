@@ -17,10 +17,10 @@ const Header = () => {
         SearchGitHub
       </h1>
       <button
-        className="border-2 flex gap-2 p-1 items-center rounded-md"
+        className="border-2  flex gap-2 p-1 items-center rounded-md"
         onClick={handleThemeToggle}
       >
-        {mode === "light" ? <IconSun /> : <IconMoon />}
+        {mode === "light" ? <IconMoon /> : <IconSun />}
       </button>
     </div>
   );
