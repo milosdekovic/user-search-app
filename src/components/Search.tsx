@@ -1,13 +1,16 @@
 import { IconSearch } from "@tabler/icons-react";
 import { useContext, useRef } from "react";
 import { UserContext } from "../context/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const { fetchUser } = useContext(UserContext);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
   const handeSearch = () => {
     if (inputRef.current) {
       console.log(inputRef.current.value);
+      navigate(`/user/${inputRef.current.value}`);
       fetchUser(inputRef.current.value);
     }
   };

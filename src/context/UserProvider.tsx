@@ -1,15 +1,26 @@
 import { ReactNode, createContext, useState } from "react";
+export interface User {
+  id: number;
+  avatar_url: string;
+  name: string;
+  login: string;
+  followers: number;
+  html_url: string;
+  public_repos: number;
+}
 
-export const UserContext = createContext<{
-  user: null; // Update any to the type of your user object
-  fetchUser: (userId: string) => void; // Specify the parameter type
-}>({
+interface UserContextType {
+  user: User | null;
+  fetchUser: (userId: string) => void;
+}
+
+export const UserContext = createContext<UserContextType>({
   user: null,
   fetchUser: () => {},
 });
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const BASE_URL = "https://api.github.com/users";
   const fetchUser = async (userId: string) => {
     if (userId.trim() === "") return;
