@@ -19,9 +19,9 @@ const Search = () => {
       <div className="flex items-center">
         <input
           ref={inputRef}
-          className="bg-green-300 w-full rounded-md p-2"
+          className="bg-orange-500 w-full rounded-md p-2"
           type="text"
-          placeholder="Search any user"
+          required
         />
         <IconSearch onClick={handeSearch} className="absolute right-3" />
       </div>

@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
+import NotFound from "../pages/NotFound";
 export interface User {
   id: number;
   avatar_url: string;
@@ -27,7 +28,12 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await fetch(`${BASE_URL}/${userId}`);
       const data = await response.json();
-      setUser(data);
+      if (data.login) {
+        setUser(data);
+      } else {
+        setUser(null);
+        <NotFound />;
+      }
     } catch (error) {
       console.log(error);
       setUser(null);

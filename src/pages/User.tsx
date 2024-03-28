@@ -5,23 +5,21 @@ import NotFound from "./NotFound";
 
 const User = () => {
   const { user } = useContext(UserContext);
-  if (!user)
-    return (
-      <div>
-        <NotFound />
-      </div>
-    );
 
   return (
     <div>
-      <UserDetails
-        avatar_url={user.avatar_url}
-        name={user.name || user.login}
-        followers={user.followers}
-        html_url={user.html_url}
-        public_repos={user.public_repos}
-        key={user.id}
-      />
+      {user ? (
+        <UserDetails
+          avatar_url={user.avatar_url}
+          name={user.name || user.login}
+          followers={user.followers}
+          login={user.login}
+          public_repos={user.public_repos}
+          key={user.id}
+        />
+      ) : (
+        <NotFound />
+      )}
     </div>
   );
 };
