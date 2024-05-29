@@ -5,7 +5,7 @@ const NotFound = () => {
   return (
     <div>
       <h1 className="text-2xl text-orange-500 flex justify-center">
-        Whoops! User doesn't exist. Try again!
+        Whoops! User doesn't exist. Please try again!
       </h1>
       <div className="text-xl flex justify-center mt-5 gap-2 items-center">
         <Link
