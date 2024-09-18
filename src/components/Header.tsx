@@ -18,6 +18,7 @@ const Header = () => {
         <Link to={"/"}>SearchGitHub</Link>
       </h1>
       <button
+        aria-label="Change theme"
         className="flex gap-2 p-1 items-center rounded-md"
         onClick={handleThemeToggle}
       >

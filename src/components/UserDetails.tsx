@@ -128,19 +128,25 @@ const UserDetails = ({
       {isFollowersModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white text-black p-6 rounded-lg shadow-lg w-80 max-h-[80vh] overflow-y-auto">
-            <h2 className="text-xl font-semibold mb-4">Followers: </h2>
             {isLoading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
-            {!isLoading && !error && (
-              <ol className="list-decimal list-inside">
-                {followersList.map((follower, index) => (
-                  <li key={follower.id} className="flex items-center mb-2">
-                    <span className="mr-2">{index + 1}.</span>
-                    <span>{follower.login}</span>
-                  </li>
-                ))}
-              </ol>
-            )}
+            {!isLoading &&
+              !error &&
+              (followersList.length > 0 ? (
+                <div>
+                  <h2 className="text-xl font-semibold mb-4">Followers: </h2>
+                  <ol className="list-decimal list-inside">
+                    {followersList.map((follower, index) => (
+                      <li key={follower.id} className="flex items-center mb-2">
+                        <span className="mr-2">{index + 1}.</span>
+                        <span>{follower.login}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ) : (
+                <p>This user has no followers. 😞 </p>
+              ))}
             <button
               className="mt-4 bg-emerald-500 text-white px-4 py-2 rounded"
               onClick={closeModal}
@@ -155,26 +161,34 @@ const UserDetails = ({
       {isReposModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 text-black rounded-lg shadow-lg w-80 max-h-[80vh] overflow-y-auto">
-            <h2 className="text-xl font-semibold mb-4">Public Repositories:</h2>
             {isLoading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
-            {!isLoading && !error && (
-              <ol>
-                {reposList.map((repo, index) => (
-                  <li key={repo.id} className="mb-2">
-                    <span className="mr-2">{index + 1}.</span>
-                    <a
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      {repo.name}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            )}
+            {!isLoading &&
+              !error &&
+              (reposList.length > 0 ? (
+                <div>
+                  <h2 className="text-xl font-semibold mb-4">
+                    Public Repositories:
+                  </h2>
+                  <ol>
+                    {reposList.map((repo, index) => (
+                      <li key={repo.id} className="mb-2">
+                        <span className="mr-2">{index + 1}.</span>
+                        <a
+                          href={repo.html_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 hover:underline"
+                        >
+                          {repo.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ) : (
+                <p>This user has no public repos. 😞 </p>
+              ))}
             <button
               className="mt-4 bg-emerald-500 text-white px-4 py-2 rounded"
               onClick={closeModal}
