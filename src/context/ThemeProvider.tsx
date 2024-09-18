@@ -1,15 +1,15 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext({
-  mode: "light",
+  mode: "dark",
   toggleTheme: () => {},
 });
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("dark");
 
   useEffect(() => {
-    document.body.className = mode === "light" ? "bg-white" : "bg-[#0A0A0A]";
+    document.body.className = mode === "light" ? "bg-white" : "bg-[#1f1f1f]";
   }, [mode]);
 
   const textColor = mode === "light" ? "text-black" : "text-white";

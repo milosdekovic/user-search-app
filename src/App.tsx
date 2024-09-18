@@ -7,12 +7,14 @@ import Header from "./components/Header";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/user/:id" element={<User />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
+      <div className="max-w-7xl p-5 mx-auto">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/user/:id" element={<User />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
