@@ -1,5 +1,4 @@
 import { ReactNode, createContext, useState } from "react";
-import NotFound from "../pages/NotFound";
 export interface User {
   id: number;
   avatar_url: string;
@@ -25,18 +24,14 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const BASE_URL = "https://api.github.com/users";
   const fetchUser = async (userId: string) => {
     if (userId.trim() === "") return;
-    try {
-      const response = await fetch(`${BASE_URL}/${userId}`);
-      const data = await response.json();
-      if (data.login) {
-        setUser(data);
-      } else {
-        setUser(null);
-        <NotFound />;
-      }
-    } catch (error) {
-      console.log(error);
+    const response = await fetch(`${BASE_URL}/${userId}`);
+    const data = await response.json();
+    if (data.login) {
+      setUser(data);
+      localStorage.setItem("user", JSON.stringify(data)); // čuvamo u storage
+    } else {
       setUser(null);
+      throw new Error("User not found");
     }
   };
   return (

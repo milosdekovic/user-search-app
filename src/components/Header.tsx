@@ -15,7 +15,7 @@ const Header = () => {
       className={`flex justify-between mt-5 mb-10 ${mode === "dark" ? "text-emerald-500" : "text-black"}`}
     >
       <h1 className="text-3xl lg:text-4xl font-bold">
-        <Link to={"/"}>SearchGitHub</Link>
+        <Link to={"/"}>GitPeek</Link>
       </h1>
       <button
         aria-label="Change theme"

@@ -10,13 +10,15 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = async () => {
-    if (!inputRef.current?.value.trim()) {
+  const handleSearch = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+
+    const username = inputRef.current?.value.trim();
+    if (!username) {
       setError("Please enter a username");
       return;
     }
 
-    const username = inputRef.current.value.trim();
     setIsLoading(true);
     setError(null);
 
@@ -31,7 +33,10 @@ const Search = () => {
   };
 
   return (
-    <div className="m-auto relative w-full max-w-xl mt-20">
+    <form
+      onSubmit={handleSearch}
+      className="m-auto relative w-full max-w-xl mt-20"
+    >
       {isLoading && <p className="text-center text-2xl mb-4">Loading...</p>}
       <div className="flex items-center">
         <input
@@ -40,13 +45,12 @@ const Search = () => {
           type="text"
           placeholder="Enter a username"
         />
-        <IconSearch
-          onClick={handleSearch}
-          className="absolute cursor-pointer right-3 text-white"
-        />
+        <button type="submit" className="absolute right-3">
+          <IconSearch className="cursor-pointer text-white" />
+        </button>
       </div>
-      {error && <p className="text-center mt-2 text-red-500">{error}</p>}
-    </div>
+      {error && <p className="text-center mt-2 text-red-700">{error}</p>}
+    </form>
   );
 };
 
